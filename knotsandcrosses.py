@@ -127,12 +127,9 @@ def convert(board):
         return output
 
 
-# different naming mechanic you also need a depth hit problem solve
 # BE careful it produces a hash map with keyboard and value a list with the node and a dictionary
 # with all the children IN WHICH EACH KEY VALUE MAPS
 # When traversing through the data structure I made it will require u to change it and then rotate
-# need a way of ending
-# SOMETHING IS UP WITH THE RECURSION
 def step(nd, turn):
     final_tree = {}
     lowest_highest = []
@@ -195,8 +192,6 @@ def step(nd, turn):
         final_tree[nd.identifier][0].data = high
     return final_tree
 
-
-# We pray to whatever god exists
 # partitions goal take a node and a turn and return a dictionary list mix of every single iteration
 
 # this should work it's a function that returns a node that is best
@@ -246,16 +241,11 @@ class Node:
 board_end = ["_", "_", "_",
              "_", "_", "_",
              "_", "_", "_"]
-# experiment
-# already_made_node=Node(None,None,convert(board_end),board_end)
-# LETS OPEN THE FLOOD GATES SHALL WE?
-# already_made_node=Node(None,None,convert(first_board),first_board)
 already_made_node = Node(None, None, convert(board_end), board_end)
 st = time.time()  # function used to time the function
 key_space = step(already_made_node, "X")
 et = time.time()
 elapsed_time = et - st
-# print("PRINTING TEMP:",temp)
 print("Flag 1 passed", ' Execution time:', elapsed_time, 'seconds')
 team = input("PICK TEAM O or X:\n").replace(" ", "").capitalize()
 if team == "O":
