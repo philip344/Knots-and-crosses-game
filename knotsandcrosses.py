@@ -129,7 +129,8 @@ def convert(board):
 
 # BE careful it produces a hash map with keyboard and value a list with the node and a dictionary
 # with all the children IN WHICH EACH KEY VALUE MAPS
-# When traversing through the data structure I made it will require u to change it and then rotate
+# When traversing through the data structure I made soit will require u to change it and then rotate
+# need a way of ending
 def step(nd, turn):
     final_tree = {}
     lowest_highest = []
@@ -192,6 +193,8 @@ def step(nd, turn):
         final_tree[nd.identifier][0].data = high
     return final_tree
 
+
+# We pray to whatever god exists
 # partitions goal take a node and a turn and return a dictionary list mix of every single iteration
 
 # this should work it's a function that returns a node that is best
@@ -268,11 +271,15 @@ elif team == "X":
     offset = find_offset(current_branch, user)
     current_branch = current_branch[convert(rotate(user, offset))][1]
     current_branch = current_branch[convert(computer.game)][1]
+    user = gui((rotate(computer.game, 4 - offset)), "X")
+    offset = find_offset(current_branch, user)
     while True:
-        user = gui((rotate(computer.game, 4 - offset)), "X")
         computer = response(current_branch, "X", convert(rotate(user, offset)))
         current_branch = current_branch[convert(rotate(user, offset))][1]
         current_branch = current_branch[convert(computer.game)][1]
+        user = gui((rotate(computer.game, 4 - offset)), "X")
+        offset = find_offset(current_branch, user)
 else:
     print("INVALID INPUT TEAM")
     quit()
+
