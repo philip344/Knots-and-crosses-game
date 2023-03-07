@@ -1,6 +1,7 @@
 import time
 
-
+#Takes board which is a list and a different
+# parameter that tells it how many times it should rotate.
 def rotate(board, n):
     if n == 0:
         return board
@@ -17,7 +18,8 @@ def rotate(board, n):
         board_t = rotate(board_t, n - 1)
     return board_t
 
-
+#Takes a list of boards removes
+# copies from a list of multiple boards.
 def remove_rotation_copies(tables):
     output = tables.copy()
     for x in range(len(tables)):
@@ -35,7 +37,8 @@ def remove_rotation_copies(tables):
     # compare stable with the change
     # instances of repetition
 
-
+#Takes a board and someone who is
+# playing and produces a list of all the next boards.
 def iterate(board, turn):
     output = []
     if board.count("_") == -1:
@@ -48,7 +51,8 @@ def iterate(board, turn):
                 output.append(similar)
     return output
 
-
+#Takes a list that is a board and produces
+# it in an aesthetically pleasing way for the user.
 def game_table(board):
     print("\n", board[0], "|", board[1], "|", board[2], "\n",
           "_________", "\n",
@@ -57,7 +61,8 @@ def game_table(board):
           board[6], "|", board[7], "|", board[8])
 
 
-# is used to ask user for input
+#Takes a board and who is playing,
+# asks the user where they want to play and output a final board.
 def gui(current_input, turn):
     output = current_input.copy()
     print(" ___1___2___3___")
@@ -94,7 +99,8 @@ def gui(current_input, turn):
         quit()
     return output
 
-
+#Takes a board produces:
+# 0 if draw 1, if X wins -1, if O wins -1, and None if it is not done.
 def check_won(board):
     # this checks rows
     for y in range(0, 7, 3):
@@ -115,7 +121,8 @@ def check_won(board):
         return None
 
 
-# take string of board and turns into a list takes list of board and turns it into string
+# : Takes a list, produces a string and is given
+# a string turn produces a list (used for the hash map).
 def convert(board):
     output = ""
     if type(board) == str:
@@ -127,10 +134,11 @@ def convert(board):
         return output
 
 
+#Takes a node and turn produces a
+# list with a hash map with every move through time.
 # BE careful it produces a hash map with keyboard and value a list with the node and a dictionary
 # with all the children IN WHICH EACH KEY VALUE MAPS
-# When traversing through the data structure I made soit will require u to change it and then rotate
-# need a way of ending
+# When traversing through the data structure I made so it will require u to change it and then rotate
 def step(nd, turn):
     final_tree = {}
     lowest_highest = []
@@ -193,11 +201,9 @@ def step(nd, turn):
         final_tree[nd.identifier][0].data = high
     return final_tree
 
-
+#Takes a guiding hash map takes who it plays against and the board and finds best Node.
 # We pray to whatever god exists
 # partitions goal take a node and a turn and return a dictionary list mix of every single iteration
-
-# this should work it's a function that returns a node that is best
 def response(dic, turn, position):
     if turn == "X":
         goal = 1
@@ -209,7 +215,7 @@ def response(dic, turn, position):
         if (goal >= x[0].data) and turn == "X":
             goal = x[0].data
             output_node = x[0]
-        elif goal < x[0].data and turn == "O":
+        elif goal <= x[0].data and turn == "O":
             goal = x[0].data
             output_node = x[0]
         else:
@@ -219,7 +225,8 @@ def response(dic, turn, position):
         quit()
     return output_node
 
-
+#Takes hash map and a board
+# figures out how you must rotate it to fit the hash map.
 def find_offset(dic, position):
     for x in range(0, 6):
         try:
@@ -282,4 +289,3 @@ elif team == "X":
 else:
     print("INVALID INPUT TEAM")
     quit()
-
